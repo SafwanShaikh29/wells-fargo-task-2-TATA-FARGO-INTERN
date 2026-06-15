@@ -1,0 +1,44 @@
+package com.wellsfargo.counselor.entity;
+
+import javax.persistence.*;
+
+@Entity
+public class Security {
+
+    @Id
+    @GeneratedValue(strategy = GenerationType.IDENTITY)
+    private Long securityId;
+
+    @Column
+    private String ticker;
+
+    @Column
+    private String companyName;
+
+    public Security(String ticker, String companyName) {
+        this.ticker = ticker;
+        this.companyName = companyName;
+    }
+
+    public Security() {}
+
+    public Long getSecurityId() {
+        return securityId;
+    }
+
+    public String getTicker() {
+        return ticker;
+    }
+
+    public void setTicker(String ticker) {
+        this.ticker = ticker;
+    }
+
+    public String getCompanyName() {
+        return companyName;
+    }
+
+    public void setCompanyName(String companyName) {
+        this.companyName = companyName;
+    }
+}

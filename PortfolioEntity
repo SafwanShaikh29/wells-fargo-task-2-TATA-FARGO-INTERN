@@ -1,0 +1,60 @@
+package com.wellsfargo.counselor.entity;
+
+import javax.persistence.*;
+import java.util.List;
+
+@Entity
+public class Portfolio {
+
+    @Id
+    @GeneratedValue(strategy = GenerationType.IDENTITY)
+    private Long portfolioId;
+
+    @Column
+    private String portfolioName;
+
+    @ManyToOne
+    @JoinColumn(name = "customer_id")
+    private Customer customer;
+
+    @OneToMany(mappedBy = "portfolio")
+    private List<PortfolioHolding> holdings;
+
+    public Portfolio(String portfolioName,
+                     Customer customer,
+                     List<PortfolioHolding> holdings) {
+        this.portfolioName = portfolioName;
+        this.customer = customer;
+        this.holdings = holdings;
+    }
+
+    public Portfolio() {}
+
+    public Long getPortfolioId() {
+        return portfolioId;
+    }
+
+    public String getPortfolioName() {
+        return portfolioName;
+    }
+
+    public void setPortfolioName(String portfolioName) {
+        this.portfolioName = portfolioName;
+    }
+
+    public Customer getCustomer() {
+        return customer;
+    }
+
+    public void setCustomer(Customer customer) {
+        this.customer = customer;
+    }
+
+    public List<PortfolioHolding> getHoldings() {
+        return holdings;
+    }
+
+    public void setHoldings(List<PortfolioHolding> holdings) {
+        this.holdings = holdings;
+    }
+}

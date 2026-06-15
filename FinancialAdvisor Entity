@@ -1,0 +1,57 @@
+package com.wellsfargo.counselor.entity;
+
+import javax.persistence.*;
+import java.util.List;
+
+@Entity
+public class FinancialAdvisor {
+
+    @Id
+    @GeneratedValue(strategy = GenerationType.IDENTITY)
+    private Long advisorId;
+
+    @Column
+    private String firstName;
+
+    @Column
+    private String lastName;
+
+    @OneToMany(mappedBy = "advisor")
+    private List<Customer> customers;
+
+    public FinancialAdvisor(String firstName, String lastName, List<Customer> customers) {
+        this.firstName = firstName;
+        this.lastName = lastName;
+        this.customers = customers;
+    }
+
+    public FinancialAdvisor() {}
+
+    public Long getAdvisorId() {
+        return advisorId;
+    }
+
+    public String getFirstName() {
+        return firstName;
+    }
+
+    public void setFirstName(String firstName) {
+        this.firstName = firstName;
+    }
+
+    public String getLastName() {
+        return lastName;
+    }
+
+    public void setLastName(String lastName) {
+        this.lastName = lastName;
+    }
+
+    public List<Customer> getCustomers() {
+        return customers;
+    }
+
+    public void setCustomers(List<Customer> customers) {
+        this.customers = customers;
+    }
+}

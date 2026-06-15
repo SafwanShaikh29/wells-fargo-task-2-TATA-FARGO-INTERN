@@ -1,0 +1,60 @@
+package com.wellsfargo.counselor.entity;
+
+import javax.persistence.*;
+
+@Entity
+public class PortfolioHolding {
+
+    @Id
+    @GeneratedValue(strategy = GenerationType.IDENTITY)
+    private Long holdingId;
+
+    @ManyToOne
+    @JoinColumn(name = "portfolio_id")
+    private Portfolio portfolio;
+
+    @ManyToOne
+    @JoinColumn(name = "security_id")
+    private Security security;
+
+    @Column
+    private double quantity;
+
+    public PortfolioHolding(Portfolio portfolio,
+                            Security security,
+                            double quantity) {
+        this.portfolio = portfolio;
+        this.security = security;
+        this.quantity = quantity;
+    }
+
+    public PortfolioHolding() {}
+
+    public Long getHoldingId() {
+        return holdingId;
+    }
+
+    public Portfolio getPortfolio() {
+        return portfolio;
+    }
+
+    public void setPortfolio(Portfolio portfolio) {
+        this.portfolio = portfolio;
+    }
+
+    public Security getSecurity() {
+        return security;
+    }
+
+    public void setSecurity(Security security) {
+        this.security = security;
+    }
+
+    public double getQuantity() {
+        return quantity;
+    }
+
+    public void setQuantity(double quantity) {
+        this.quantity = quantity;
+    }
+}
